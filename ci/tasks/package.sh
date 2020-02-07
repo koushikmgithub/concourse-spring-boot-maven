@@ -3,4 +3,5 @@
 set -e -u -x
 
 cd source-code/
-./mvnw package
+#./mvnw package
+./mvn clean install
