@@ -4,5 +4,28 @@ jobs:
   - get: source-code
     trigger: true
   - task: package
-    privileged: true
-    file: source-code/ci/tasks/package.yml
+    #privileged: true
+    #file: source-code/ci/tasks/package.yml
+    config:
+      platform: linux
+      inputs:
+      - name: source-code
+      outputs:
+      - name: code_jar
+      image_resource:
+        type: docker-image
+        source:
+          repository: java
+          tag: "8"
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          export TERM=dumb
+          cd source-code
+          ./mvnw clean install
+          mv target/*.jar ../code_jar
+  - put: code-build
+    params:
+      file: code_jar/concourse-spring-boot-maven-*.jar

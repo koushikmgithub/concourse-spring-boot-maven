@@ -2,5 +2,15 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/jamesjoshuahill/concourse-spring-boot-maven.git
+    uri: https://github.com/koushikmgithub/concourse-spring-boot-maven.git
     branch: master
+
+- name: code-build
+  type: artifactory
+  source:
+    endpoint: http://localhost:6061/artifactory
+    repository: "/jar-files/service"
+    regex: "concourse-spring-boot-maven-(?.*).jar"
+    username: admin
+    password: Koushik@123
+    skip_ssl_verification: true
