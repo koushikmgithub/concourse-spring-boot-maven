@@ -26,7 +26,28 @@ jobs:
     trigger: true
   - task: build
     privileged: true
-    file: src-code/ci/build.yml
+    #file: src-code/ci/build.yml
+    config:
+      platform: linux
+      inputs:
+      - name: src-code
+      outputs:
+      - name: build-output
+      image_resource:
+        type: docker-image
+        source:
+          repository: java
+          tag: "8"
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          export TERM=dumb
+          cd src-code
+          ./mvnw clean install
+          cd ..
+          cp src-code/target/concourse-spring-boot-maven-0.0.1-SNAPSHOT.jar  build-output/.
   - put: cf
     params:
       manifest: src-code/manifest.yml
