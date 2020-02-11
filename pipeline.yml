@@ -8,7 +8,7 @@ resources:
     uri: https://github.com/koushikmgithub/concourse-spring-boot-maven.git
     branch: master
 
-- name: PWS
+- name: cf
   type: cf
   source:
     api: {{pws-api}}
