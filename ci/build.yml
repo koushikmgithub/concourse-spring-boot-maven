@@ -8,10 +8,10 @@ image_resource:
     tag: "8"
 
 inputs:
-  - name: source-code
+  - name: src-code
 
 outputs:
   - name: build-output
 
 run:
-  path: source-code/ci/build.sh
+  path: src-code/ci/build.sh

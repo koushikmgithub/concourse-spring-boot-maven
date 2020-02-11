@@ -2,7 +2,7 @@
 # fly -t ci set-pipeline -p maven-cf-simple -c pipeline.yml -l pipeline-secrets.yml
 ---
 resources:
-- name: source-code
+- name: src-code
   type: git
   source:
     uri: https://github.com/koushikmgithub/concourse-spring-boot-maven.git
@@ -22,11 +22,11 @@ jobs:
 - name: build
   public: true
   plan:
-  - get: source-code
+  - get: src-code
     trigger: true
   - task: build
-    file: source-code/ci/build.yml
+    file: src-code/ci/build.yml
   - put: cf
     params:
-      manifest: source-code/manifest.yml
+      manifest: src-code/manifest.yml
       path: build-output/concourse-spring-boot-maven-0.0.1-SNAPSHOT.jar
