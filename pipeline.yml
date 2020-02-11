@@ -5,18 +5,18 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/slalom/spring-boot-pcf.git
+    uri: https://github.com/koushikmgithub/concourse-spring-boot-maven.git
     branch: master
 
-- name: cf
+- name: PWS
   type: cf
   source:
-    api: {{cf-api}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-organization}}
-    space: {{cf-space}}
-    #skip_cert_check: true
+    api: {{pws-api}}
+    organization: {{pws-organization}}
+    username: {{deploy-username}}
+    password: {{deploy-password}}
+    skip_cert_check: true
+    space: {{pws-space}}
 
 jobs:
 - name: build
