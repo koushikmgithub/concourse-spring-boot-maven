@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e -x
+set -e -u -x
 
 cd source-code
   #ls ./src/main/resources/static
